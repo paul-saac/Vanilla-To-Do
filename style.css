@@ -127,3 +127,4 @@ input[type="checkbox"]:checked ~ .todo-text{
 input[type="checkbox"]{
     display: none;
 }
+ 
