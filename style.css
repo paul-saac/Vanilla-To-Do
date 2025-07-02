@@ -99,3 +99,31 @@ form {
 .delete-button:hover svg {
     color: #ff0033;
 }
+.custom-checkbox {
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    /* svg fill="transparent" */
+}
+.custom-checkbox svg {
+    color: transparent;
+    transition: color 500ms ease-in-out;
+}
+input[type="checkbox"]:checked ~ .custom-checkbox {
+    background-color: var(--accent-color);
+}
+input[type="checkbox"]:checked ~ .custom-checkbox svg {
+    color: var(--primary-color);
+}
+input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+input[type="checkbox"]{
+    display: none;
+}
