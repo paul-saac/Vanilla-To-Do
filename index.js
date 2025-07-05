@@ -19,5 +19,5 @@ function addTodo() {
 }
 
 function createTodoItem(todo) {
-    
+    const dd = document.getElementById();
 }
