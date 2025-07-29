@@ -17,11 +17,6 @@ function addTodo() {
         todoInput.value = "";
     }
 }
-function addTodo() {
-    const todoText = todoInput.value.trim();
-    if(todoText.length > 0) {
-        allTodos.push(todoText);
-        createTodoItem(todoText);
-        todoInput.value = "";
-    }
-}
+
+
+
