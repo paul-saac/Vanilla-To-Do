@@ -4,17 +4,21 @@ const todoListUL = document.getElementById('todo-list');
 
 let allTodos = [];
 
+// Load todos from Firestore when page loads
+window.addEventListener('DOMContentLoaded', loadTodos);
+
 todoForm.addEventListener('submit', function(e){
     e.preventDefault();
     addTodo();
-})
+});
 
 function addTodo() {
     const todoText = todoInput.value.trim();
     if(todoText.length > 0) {
-        allTodos.push(todoText);
-        createTodoItem(todoText);
-        todoInput.value = "";
+        // Add to Firestore
+        db.collection("todo").add({
+            text: todoInput.value,
+        })
     }
 }
 
