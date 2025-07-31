@@ -10,12 +10,17 @@ todoForm.addEventListener('submit', function(e){
 function addTodo() {
     const todoText = todoInput.value.trim();
     if(todoText.length > 0) {
-        // Add to Firestore
+        // Add to Firestore Code
         db.collection("todo").add({
             text: todoInput.value,
         })
+        todoInput.value = "";
     }
 }
 
-
+function getItems(){
+    db.collection("todo").onSnapshot((snapshot) => {
+        
+    })
+}
 
