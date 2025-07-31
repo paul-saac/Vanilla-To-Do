@@ -38,7 +38,7 @@ function renderTodoItem(id, text, completed) {
     checkbox.checked = completed;
     checkbox.addEventListener("change", () => {
         db.collection("todo").doc(id).update({
-        completed: checkbox.checked
+            completed: checkbox.checked
         });
     });
 
