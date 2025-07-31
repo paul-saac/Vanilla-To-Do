@@ -1,3 +1,5 @@
+
+
 // Firebase configuration using compat libraries
 const firebaseConfig = {
     apiKey: "AIzaSyAuUnlvwPdm_npCVjS3rXJfFZHMwIZP0ZM",
@@ -14,3 +16,5 @@ firebase.initializeApp(firebaseConfig);
 
 // Initialize Firestore
 const db = firebase.firestore();
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider(); 

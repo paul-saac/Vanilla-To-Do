@@ -23,16 +23,13 @@ function addTodo(text) {
 
 // Get and Render Todos from Firestore
 function getItems() {
-  db.collection("todo")
-    .orderBy("createdAt", "desc")
-    .onSnapshot(snapshot => {
-      todoListUL.innerHTML = ""; // Clear old list
-
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const id = doc.id;
-        renderTodoItem(id, data.text, data.completed);
-      });
+  db.collection("todo").orderBy("createdAt", "desc").onSnapshot(snapshot => {
+        todoListUL.innerHTML = ""; // Clear old list
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            renderTodoItem(id, data.text, data.completed);
+        });
     });
 }
 
