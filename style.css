@@ -112,7 +112,6 @@ form {
 }
 .custom-checkbox svg {
     color: transparent;
-    transition: color 500ms ease-in-out;
 }
 input[type="checkbox"]:checked ~ .custom-checkbox {
     background-color: var(--accent-color);
