@@ -1,8 +1,18 @@
 const todoForm = document.querySelector('form');
 const todoInput = document.getElementById('todo-input');
 const todoListUL = document.getElementById('todo-list');
+   
+// Handle Form Submit
+todoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const todoText = todoInput.value.trim();
+    if (todoText.length > 0) {
+        addTodo(todoText);
+        todoInput.value = "";
+    }
+});
 
-// 🟩 Add Todo
+// Add Todo
 function addTodo(text) {
   db.collection("todo").add({
     text,
@@ -11,7 +21,7 @@ function addTodo(text) {
   });
 }
 
-// 🔄 Get and Render Todos from Firestore
+// Get and Render Todos from Firestore
 function getItems() {
   db.collection("todo")
     .orderBy("createdAt", "desc")
@@ -26,7 +36,7 @@ function getItems() {
     });
 }
 
-// 🧱 Render a single Todo item
+// Render a single Todo item
 function renderTodoItem(id, text, completed) {
     const li = document.createElement("li");
     li.className = "todo";
@@ -82,17 +92,6 @@ function renderTodoItem(id, text, completed) {
 
     // Add to list
     todoListUL.appendChild(li);
-    }
+};
 
-    // 🔘 Handle Form Submit
-    todoForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const todoText = todoInput.value.trim();
-    if (todoText.length > 0) {
-        addTodo(todoText);
-        todoInput.value = "";
-    }
-});
-
-// 🚀 Load Todos on Page Load
 getItems();
