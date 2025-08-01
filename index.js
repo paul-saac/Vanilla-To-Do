@@ -92,3 +92,4 @@ function renderTodoItem(id, text, completed) {
 };
 
 getItems();
+

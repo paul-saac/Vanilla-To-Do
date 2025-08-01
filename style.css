@@ -25,16 +25,34 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 40px;
+    flex-direction: row;
+    padding: 25px 40px;
     background: rgb(79, 9, 9);
     width: 100%;
     box-sizing: border-box;
 }   
+nav a {
+    text-decoration: none;
+    color: white;
+}
+.nav-wrapper a {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+#nav-apps {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
 h1 {
     font-size: 2rem;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--accent-color);
+    text-align: center;
 }
 .navbtns button {
     background: var(--accent-color);
