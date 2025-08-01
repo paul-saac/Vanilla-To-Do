@@ -36,7 +36,19 @@ h1 {
     text-transform: uppercase;
     color: var(--accent-color);
 }
+.navbtns button {
+    background: var(--accent-color);
+    border: none;
+    padding: 7px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.navbtns {
+    display: flex;
+    gap: 15px;
+}
 .wrapper {
+    margin-top: 50px;
     width: 700px;
     display: flex;
     flex-direction: column;
