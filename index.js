@@ -91,3 +91,57 @@ function renderTodoItem(id, text, completed) {
     todoListUL.appendChild(li);
 };
 getItems();
+
+
+// MODALS 
+// index.js (or inline in script tag)
+document.addEventListener('DOMContentLoaded', () => {
+    const signupModal = document.querySelector('#modal-signup');
+    const loginModal = document.querySelector('#modal-login');
+    const accountModal = document.querySelector('#modal-account');
+
+    const openSignup = document.querySelector('#signup-modal-trigger');
+    const openLogin = document.querySelector('#login-modal-trigger');
+    const openAccount = document.querySelector('#account-modal-trigger');
+
+    const modals = [signupModal, loginModal, accountModal];
+
+    // Open handlers
+    openSignup?.addEventListener('click', e => {
+        e.preventDefault();
+        closeAllModals();
+        signupModal.classList.add('show');
+    });
+
+    openLogin?.addEventListener('click', e => {
+        e.preventDefault();
+        closeAllModals();
+        loginModal.classList.add('show');
+    });
+
+    openAccount?.addEventListener('click', e => {
+        e.preventDefault();
+        closeAllModals();
+        accountModal.classList.add('show');
+    });
+
+    // Close modals when clicking outside
+    modals.forEach(modal => {
+        modal.addEventListener('click', e => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    });
+
+    // Optional: Close on ESC key
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
+
+    function closeAllModals() {
+        modals.forEach(modal => modal.classList.remove('show'));
+    }
+});
