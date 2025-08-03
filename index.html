@@ -18,19 +18,15 @@
         </a>
 
         <ul id="nav-apps">
-            <li class="logged-in">
-                <a href="#">Account</a>
-            </li>
-            <li class="logged-in">
-                <a href="#" id="logout">Logout</a>
+            <li class="logged-out">
+                <a href="#" id="login-modal-trigger">Login</a>
             </li>
             <li class="logged-out">
-                <a href="#">Login</a>
+                <a href="#" id="signup-modal-trigger">Sign up</a>
             </li>
-            <li class="logged-out">
-                <a href="#">Sign up</a>
+            <li class="logged-in">
+                <a href="#" id="account-modal-trigger">Account</a>
             </li>
-            </span>
         </ul>
     </nav>
 
@@ -85,7 +81,7 @@
         </div>
 
         <form style="display: none;">
-            <input type="text" id="todo-input" placeholder="Write your to do">
+            <input type="text" id="todo-  input" placeholder="Write your to do">
             <button id="add-button">Add</button>
         </form>
         <ul id="todo-list">

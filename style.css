@@ -54,6 +54,30 @@ h1 {
     color: var(--accent-color);
     text-align: center;
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background-color: var(--primary-color);
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    color: var(--text-color);
+    position: relative;
+}
+.modal.show {
+    display: flex;
+}
+
 .navbtns button {
     background: var(--accent-color);
     border: none;

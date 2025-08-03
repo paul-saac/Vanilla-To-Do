@@ -90,6 +90,4 @@ function renderTodoItem(id, text, completed) {
     // Add to list
     todoListUL.appendChild(li);
 };
-
 getItems();
-
