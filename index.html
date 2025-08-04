@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
-    <script tpye="module" src="route.js"></script>
 </head>
 
 <body>
@@ -29,7 +25,7 @@
                 <a href="#" id="account-modal-trigger">Account</a>
             </li>
             <li class="logged-in">
-                <a href="#" id="account-modal-trigger">Log Out</a>
+                <a href="#" id="logout-btn">Log Out</a>
             </li>
             
         </ul>
@@ -85,7 +81,7 @@
           <h1>log in or sign up </h2>
         </div>
 
-        <form style="display: none;">
+        <form style="">
             <input type="text" id="todo-  input" placeholder="Write your to do">
             <button id="add-button">Add</button>
         </form>
