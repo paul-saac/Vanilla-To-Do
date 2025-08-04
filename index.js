@@ -145,3 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modals.forEach(modal => modal.classList.remove('show'));
     }
 });
+
+
+//AUT

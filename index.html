@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
     <script tpye="module" src="route.js"></script>
 </head>
 
@@ -27,6 +28,10 @@
             <li class="logged-in">
                 <a href="#" id="account-modal-trigger">Account</a>
             </li>
+            <li class="logged-in">
+                <a href="#" id="account-modal-trigger">Log Out</a>
+            </li>
+            
         </ul>
     </nav>
 
@@ -37,11 +42,11 @@
             <form id="signup-form">
                 <div class="input-field">
                     <label for="signup-email">Email address</label>
-                    <input type="email" id="signup-email" required />
+                    <input type="email" id="signup-email" placeholder="Enter Email" required />
                 </div>
                 <div class="input-field">
                     <label for="signup-password">Choose password</label>
-                    <input type="password" id="signup-password" required />
+                    <input type="password" id="signup-password" placeholder="Enter Password" required />
                 </div>
                 <button class="btn yellow darken-2 z-depth-0">Sign up</button>
             </form>
@@ -69,8 +74,8 @@
     <!-- ACCOUNT MODAL -->
     <div id="modal-account" class="modal">
         <div class="modal-content center-align">
-        <h4>Account details</h4><br />
-        <div class="account-details"></div>
+            <h4>Account details</h4><br />
+            <div class="account-details"></div>
         </div>
     </div> 
 
