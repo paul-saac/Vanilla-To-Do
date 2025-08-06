@@ -2,23 +2,25 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 import {
   getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
   
 // Firebase configuration using compat libraries
 const firebaseConfig = {
-    apiKey: "AIzaSyAuUnlvwPdm_npCVjS3rXJfFZHMwIZP0ZM",
-    authDomain: "vanilla-to-do.firebaseapp.com",
-    projectId: "vanilla-to-do",
-    storageBucket: "vanilla-to-do.firebasestorage.app",
-    messagingSenderId: "783719500831",
-    appId: "1:783719500831:web:b24b6697a39af090e4592a",
-    measurementId: "G-9KB44NXMFF"
+  apiKey: "AIzaSyAuUnlvwPdm_npCVjS3rXJfFZHMwIZP0ZM",
+  authDomain: "vanilla-to-do.firebaseapp.com",
+  projectId: "vanilla-to-do",
+  storageBucket: "vanilla-to-do.firebasestorage.app",
+  messagingSenderId: "783719500831",
+  appId: "1:783719500831:web:b24b6697a39af090e4592a",
+  measurementId: "G-9KB44NXMFF"
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
-
+const analytics = getAnalytics(app);
 
 //FIRSTOREE============================================================
 const todoForm = document.querySelector('form');
