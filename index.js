@@ -34,7 +34,7 @@ todoForm.addEventListener("submit", async (e) => {
       text: todoText,
       completed: false,
       createdAt: serverTimestamp()
-    });
+    }); 
     todoInput.value = "";
   }
 });
