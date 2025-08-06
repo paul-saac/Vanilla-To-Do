@@ -163,7 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
 //SIGN-UP
 const email = document.getElementById('signup-email');
 const password = document.getElementById('signup-password');
+const signupForm = document.getElementById('signup-form');
 
+signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Signing Up...")
+  
+});
 
 createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
