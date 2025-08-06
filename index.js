@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
   
 // Firebase configuration using compat libraries
 const firebaseConfig = {
@@ -17,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 //FIRSTOREE============================================================
 const todoForm = document.getElementById('form');
@@ -103,7 +104,6 @@ function renderTodoItem(id, text, completed) {
 
 getItems();
 
-
 // MODALS 
 // index.js (or inline in script tag)
 document.addEventListener('DOMContentLoaded', () => {
@@ -158,4 +158,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//AUT
+//================================AUTHENTICATION===============================================//
+
+//SIGN-UP
+const email = document.getElementById('signup-email');
+const password = document.getElementById('signup-password');
+
+
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    window.location.href="profile.html"
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });

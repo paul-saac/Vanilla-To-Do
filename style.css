@@ -55,6 +55,12 @@ h1 {
     text-align: center;
 }
 
+.logged-in {
+    display: none;
+}
+
+
+
 
 .modal {
     display: none;
