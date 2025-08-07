@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 // Firebase configuration using compat libraries
 const firebaseConfig = {
@@ -182,10 +182,37 @@ signupForm.addEventListener("submit", (e) => {
       });
       emailInput.value = "";
       passwordInput.value = "";
-      window.location.href = "profile.html";
+      alert("Account Created!")
+      // window.location.href = "profile.html";
     })
     .catch((error) => {
       alert(error.message);
     });
 });
 
+//LOG-IN
+const emailInput2 = document.getElementById('login-email');
+const passwordInput2 = document.getElementById('login-password');
+const loginForm = document.getElementById('login-form');
+
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const loginemail = emailInput2.value;
+  const loginpassword = passwordInput2.value;
+
+  signInWithEmailAndPassword(auth, loginemail, loginpassword)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      //FUNCTION FOR LOGIN 
+      emailInput2.value = "";
+      passwordInput2.value = "";
+      console.log("Logged in as:", user.email);
+      alert("Sign-in")
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+});
