@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-  
+
 // Firebase configuration using compat libraries
 const firebaseConfig = {
   apiKey: "AIzaSyAuUnlvwPdm_npCVjS3rXJfFZHMwIZP0ZM",
@@ -23,7 +23,7 @@ const auth = getAuth(app);
 const todoForm = document.getElementById('form');
 const todoInput = document.getElementById('todo-input');
 const todoListUL = document.getElementById('todo-list');
-   
+
 // 🔄 Handle Form Submit
 todoForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -33,7 +33,7 @@ todoForm.addEventListener("submit", async (e) => {
       text: todoText,
       completed: false,
       createdAt: serverTimestamp()
-    }); 
+    });
     todoInput.value = "";
   }
 });
@@ -107,79 +107,85 @@ getItems();
 // MODALS 
 // index.js (or inline in script tag)
 document.addEventListener('DOMContentLoaded', () => {
-    const signupModal = document.querySelector('#modal-signup');
-    const loginModal = document.querySelector('#modal-login');
-    const accountModal = document.querySelector('#modal-account');
+  const signupModal = document.querySelector('#modal-signup');
+  const loginModal = document.querySelector('#modal-login');
+  const accountModal = document.querySelector('#modal-account');
 
-    const openSignup = document.querySelector('#signup-modal-trigger');
-    const openLogin = document.querySelector('#login-modal-trigger');
-    const openAccount = document.querySelector('#account-modal-trigger');
+  const openSignup = document.querySelector('#signup-modal-trigger');
+  const openLogin = document.querySelector('#login-modal-trigger');
+  const openAccount = document.querySelector('#account-modal-trigger');
 
-    const modals = [signupModal, loginModal, accountModal];
+  const modals = [signupModal, loginModal, accountModal];
 
-    // Open handlers
-    openSignup?.addEventListener('click', e => {
-        e.preventDefault();
-        closeAllModals();
-        signupModal.classList.add('show');
+  // Open handlers
+  openSignup?.addEventListener('click', e => {
+    e.preventDefault();
+    closeAllModals();
+    signupModal.classList.add('show');
+  });
+
+  openLogin?.addEventListener('click', e => {
+    e.preventDefault();
+    closeAllModals();
+    loginModal.classList.add('show');
+  });
+
+  openAccount?.addEventListener('click', e => {
+    e.preventDefault();
+    closeAllModals();
+    accountModal.classList.add('show');
+  });
+
+  // Close modals when clicking outside
+  modals.forEach(modal => {
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
     });
+  });
 
-    openLogin?.addEventListener('click', e => {
-        e.preventDefault();
-        closeAllModals();
-        loginModal.classList.add('show');
-    });
-
-    openAccount?.addEventListener('click', e => {
-        e.preventDefault();
-        closeAllModals();
-        accountModal.classList.add('show');
-    });
-
-    // Close modals when clicking outside
-    modals.forEach(modal => {
-        modal.addEventListener('click', e => {
-            if (e.target === modal) {
-                modal.classList.remove('show');
-            }
-        });
-    });
-
-    // Optional: Close on ESC key
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            closeAllModals();
-        }
-    });
-
-    function closeAllModals() {
-        modals.forEach(modal => modal.classList.remove('show'));
+  // Optional: Close on ESC key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeAllModals();
     }
+  });
+
+  function closeAllModals() {
+    modals.forEach(modal => modal.classList.remove('show'));
+  }
 });
 
 
 //================================AUTHENTICATION===============================================//
 
 //SIGN-UP
-const email = document.getElementById('signup-email');
-const password = document.getElementById('signup-password');
+const emailInput = document.getElementById('signup-email');
+const passwordInput = document.getElementById('signup-password');
 const signupForm = document.getElementById('signup-form');
 
 signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Signing Up...")
-  
+  e.preventDefault();
+
+  const email = emailInput.value;
+  const password = passwordInput.value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+      const user = userCredential.user;
+
+      // Save to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        createdAt: new Date(),
+      });
+      emailInput.value = "";
+      passwordInput.value = "";
+      window.location.href = "profile.html";
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
 });
 
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    window.location.href="profile.html"
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
