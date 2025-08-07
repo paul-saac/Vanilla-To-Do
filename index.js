@@ -206,6 +206,7 @@ loginForm.addEventListener("submit", (e) => {
       const user = userCredential.user;
 
       //FUNCTION FOR LOGIN 
+      window.location.href = "home.html";
       emailInput2.value = "";
       passwordInput2.value = "";
       console.log("Logged in as:", user.email);
