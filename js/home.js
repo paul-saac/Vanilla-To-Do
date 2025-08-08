@@ -1,6 +1,6 @@
-import { app, auth, db } from './firebase.js';
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-import { getAuth, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { auth, db } from './firebase.js';
+import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 //FIRSTOREE=======================================
 
 const todoForm = document.getElementById('form');
@@ -12,10 +12,12 @@ const accountModal = document.querySelector('#modal-account');
 const openAccount = document.querySelector('#account-modal-trigger');
 const modals = [accountModal];
 
+
 openAccount?.addEventListener('click', e => {
     e.preventDefault();
     closeAllModals();
     accountModal.classList.add('show');
+
 });
 modals.forEach(modal => {
     modal.addEventListener('click', e => {
@@ -32,6 +34,16 @@ document.addEventListener('keydown', e => {
 function closeAllModals() {
     modals.forEach(modal => modal.classList.remove('show'));
 }
+
+
+//LOGOUT
+const logoutBtn = document.getElementById('logout-btn');
+logoutBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await auth.signOut();
+    alert("User signed out");
+    window.location.href = "./login.html";
+});
 
 // Handle Form Submit
 todoForm.addEventListener("submit", async (e) => {
@@ -121,6 +133,13 @@ function renderTodoItem(uid, id, text, completed) {
 onAuthStateChanged(auth, (user) => {
     if (user) {
         getItems(user.uid);
+
+        const accountDetailsBox = document.querySelector(".account-details");
+        if (accountDetailsBox) {
+            const accountEmail = document.createElement("h4");
+            accountEmail.innerText = `Email: ${user.email}`;
+            accountDetailsBox.appendChild(accountEmail);
+        }
     } else {
         todoListUL.innerHTML = "";
     }

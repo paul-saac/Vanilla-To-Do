@@ -69,7 +69,6 @@ signupForm.addEventListener("submit", (e) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
       const user = userCredential.user;
-
       // Save to Firestore
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
@@ -78,7 +77,6 @@ signupForm.addEventListener("submit", (e) => {
       emailInput.value = "";
       passwordInput.value = "";
       alert("Account Created!")
-      // window.location.href = "profile.html";
     })
     .catch((error) => {
       alert(error.message);
