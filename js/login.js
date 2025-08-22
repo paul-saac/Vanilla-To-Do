@@ -106,8 +106,7 @@ loginForm.addEventListener("submit", (e) => {
       alert("Sign-in")
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      
     });
 });
 
