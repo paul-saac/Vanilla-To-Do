@@ -1,4 +1,4 @@
-import { auth, db } from './firebase.js';
+import { auth, db } from '../firebase/firebasemain.js';
 import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import { getAuth, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 // MODALS 
@@ -110,7 +110,7 @@ loginForm.addEventListener("submit", (e) => {
     });
 });
 
-//LOG-IN
+//LOG-OUT
 const logoutBtn = document.getElementById("logout-btn");
 
 logoutBtn.addEventListener("click", () => {

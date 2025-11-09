@@ -1,4 +1,4 @@
-import { auth, db } from './firebase.js';
+import { auth, db } from '../firebase/firebasemain.js';
 import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import { signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 //FIRSTOREE=======================================
@@ -137,7 +137,7 @@ onAuthStateChanged(auth, (user) => {
         const accountDetailsBox = document.querySelector(".account-details");
         if (accountDetailsBox) {
             const accountEmail = document.createElement("h4");
-            accountEmail.innerText = `Email: ${user.email}`;
+            accountEmail.innerText = `Emailss: ${user.email}`;
             accountDetailsBox.appendChild(accountEmail);
         }
     } else {
