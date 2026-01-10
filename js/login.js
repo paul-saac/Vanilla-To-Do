@@ -25,12 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loginModal.classList.add('show');
   });
 
-  openAccount?.addEventListener('click', e => {
-    e.preventDefault();
-    closeAllModals();
-    accountModal.classList.add('show');
-  });
-
   // Close modals when clicking outside
   modals.forEach(modal => {
     modal.addEventListener('click', e => {
@@ -60,7 +54,7 @@ const emailInput = document.getElementById('signup-email');
 const passwordInput = document.getElementById('signup-password');
 const signupForm = document.getElementById('signup-form');
 
-signupForm.addEventListener("submit", (e) => {
+signupForm?.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const email = emailInput.value;
@@ -88,7 +82,7 @@ const emailInput2 = document.getElementById('login-email');
 const passwordInput2 = document.getElementById('login-password');
 const loginForm = document.getElementById('login-form');
 
-loginForm.addEventListener("submit", (e) => {
+loginForm?.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const loginemail = emailInput2.value;
@@ -107,18 +101,5 @@ loginForm.addEventListener("submit", (e) => {
     })
     .catch((error) => {
       
-    });
-});
-
-//LOG-OUT
-const logoutBtn = document.getElementById("logout-btn");
-
-logoutBtn.addEventListener("click", () => {
-  signOut(auth)
-    .then(() => {
-      window.location.href = "home.html"
-    })
-    .catch((error) => {
-      console.error("Error signing out:", error);
     });
 });

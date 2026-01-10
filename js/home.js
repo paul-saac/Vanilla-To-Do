@@ -1,6 +1,6 @@
 import { auth, db } from '../firebase/firebasemain.js';
 import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, setDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-import { signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 //FIRSTOREE=======================================
 
 const todoForm = document.getElementById('form');
@@ -38,11 +38,11 @@ function closeAllModals() {
 
 //LOGOUT
 const logoutBtn = document.getElementById('logout-btn');
-logoutBtn.addEventListener('click', async (e) => {
+logoutBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
-    await auth.signOut();
+    await signOut(auth);
     alert("User signed out");
-    window.location.href = "./login.html";
+    window.location.href = "./index.html";
 });
 
 // Handle Form Submit
@@ -142,5 +142,7 @@ onAuthStateChanged(auth, (user) => {
         }
     } else {
         todoListUL.innerHTML = "";
+        // If the user is not logged in, send them back to the login page.
+        window.location.href = "./index.html";
     }
 });
